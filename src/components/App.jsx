@@ -11,7 +11,7 @@ class App extends Component {
             {title: "The First and Last Freedom", author: "Jiddu Krishnamurit"}
         ];
         this.state = {
-            bookNumber: 1
+            bookNumber: 0
         };
     }
 
@@ -20,6 +20,17 @@ class App extends Component {
         tempBookNumber++;
         if (tempBookNumber === this.books.length){
             tempBookNumber = 0;
+        }
+        this.setState({
+            bookNumber: tempBookNumber
+        });
+    }
+
+    goToPreviousBook = () => {
+        let tempBookNumber = this.state.bookNumber;
+        tempBookNumber--;
+        if(tempBookNumber < 0){
+            tempBookNumber = this.books.length - 1;
         }
         this.setState({
             bookNumber: tempBookNumber
@@ -34,6 +45,7 @@ class App extends Component {
                 <div className = "row">
                     <div className = "col-md-4">
                         {/*Button here previous book*/}
+                        <button onClick={this.goToPreviousBook}>Previous Book</button>
                     </div>
                     <div className = "col-md-4">
                         {/*Button here book*/}
